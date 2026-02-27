@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.pitercoding</groupId>
-	<artifactId>springboot2-devdojo</artifactId>
+	<artifactId>projeto-springinitializr</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>springboot2-devdojo</name>
+	<name>projeto-springinitializr</name>
 	<description>Curso Spring Boot 2 Essentials do DevDojo</description>
 	<url/>
 	<licenses>
