@@ -1,6 +1,7 @@
 package com.pitercoding.springboot2_devdojo.service;
 
 import com.pitercoding.springboot2_devdojo.domain.Anime;
+import com.pitercoding.springboot2_devdojo.mapper.AnimeMapper;
 import com.pitercoding.springboot2_devdojo.requests.AnimePostRequestBody;
 import com.pitercoding.springboot2_devdojo.repository.AnimeRepository;
 import com.pitercoding.springboot2_devdojo.requests.AnimePutRequestBody;
@@ -25,8 +26,8 @@ public class AnimeService {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Anime not found!"));
     }
 
-    public Anime save(AnimePostRequestBody animeDTO) {
-        return animeRepository.save(Anime.builder().name(animeDTO.getName()).build());
+    public Anime save(AnimePostRequestBody animePostRequestBody) {
+        return animeRepository.save(AnimeMapper.INSTANCE.toAnime(animePostRequestBody));
     }
 
     public void delete(Long id) {
@@ -35,10 +36,8 @@ public class AnimeService {
 
     public void replace(AnimePutRequestBody animePutRequestBody) {
         Anime savedAnime = findByIdOrThrowBadRequestException(animePutRequestBody.getId());
-        Anime anime = Anime.builder()
-                .id(savedAnime.getId())
-                .name(animePutRequestBody.getName())
-                .build();
+        Anime anime = AnimeMapper.INSTANCE.toAnime(animePutRequestBody);
+        anime.setId(savedAnime.getId());
         animeRepository.save(anime);
     }
 }
