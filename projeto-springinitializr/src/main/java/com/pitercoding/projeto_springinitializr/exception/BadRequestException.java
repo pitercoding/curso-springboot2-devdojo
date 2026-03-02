@@ -1,4 +1,4 @@
-package com.pitercoding.springboot2_devdojo.exception;
+package com.pitercoding.projeto_springinitializr.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

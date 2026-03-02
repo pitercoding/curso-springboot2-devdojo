@@ -1,10 +1,10 @@
-package com.pitercoding.springboot2_devdojo;
+package com.pitercoding.projeto_springinitializr;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class Springboot2DevdojoApplicationTests {
+class ProjetoSpringinitializrApplicationTests {
 
 	@Test
 	void contextLoads() {

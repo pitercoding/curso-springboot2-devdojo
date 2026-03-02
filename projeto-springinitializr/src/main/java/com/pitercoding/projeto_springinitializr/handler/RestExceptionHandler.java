@@ -1,7 +1,7 @@
-package com.pitercoding.springboot2_devdojo.handler;
+package com.pitercoding.projeto_springinitializr.handler;
 
-import com.pitercoding.springboot2_devdojo.exception.BadRequestException;
-import com.pitercoding.springboot2_devdojo.exception.BadRequestExceptionDetails;
+import com.pitercoding.projeto_springinitializr.exception.BadRequestException;
+import com.pitercoding.projeto_springinitializr.exception.BadRequestExceptionDetails;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

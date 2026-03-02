@@ -1,8 +1,8 @@
-package com.pitercoding.springboot2_devdojo.mapper;
+package com.pitercoding.projeto_springinitializr.mapper;
 
-import com.pitercoding.springboot2_devdojo.domain.Anime;
-import com.pitercoding.springboot2_devdojo.requests.AnimePostRequestBody;
-import com.pitercoding.springboot2_devdojo.requests.AnimePutRequestBody;
+import com.pitercoding.projeto_springinitializr.domain.Anime;
+import com.pitercoding.projeto_springinitializr.requests.AnimePostRequestBody;
+import com.pitercoding.projeto_springinitializr.requests.AnimePutRequestBody;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

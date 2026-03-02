@@ -1,7 +1,7 @@
 # Read Me First
 The following was discovered as part of building this project:
 
-* The original package name 'com.pitercoding.springboot2-devdojo' is invalid and this project uses 'com.pitercoding.springboot2_devdojo' instead.
+* The original package name 'com.pitercoding.springboot2-devdojo' is invalid and this project uses 'com.pitercoding.projeto_springinitializr' instead.
 
 # Getting Started
 

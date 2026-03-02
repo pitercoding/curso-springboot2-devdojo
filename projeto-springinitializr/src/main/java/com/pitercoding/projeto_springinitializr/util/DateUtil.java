@@ -1,4 +1,4 @@
-package com.pitercoding.springboot2_devdojo.util;
+package com.pitercoding.projeto_springinitializr.util;
 
 import org.springframework.stereotype.Component;
 

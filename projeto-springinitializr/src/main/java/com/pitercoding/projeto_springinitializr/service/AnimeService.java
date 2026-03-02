@@ -1,15 +1,14 @@
-package com.pitercoding.springboot2_devdojo.service;
+package com.pitercoding.projeto_springinitializr.service;
 
-import com.pitercoding.springboot2_devdojo.domain.Anime;
-import com.pitercoding.springboot2_devdojo.exception.BadRequestException;
-import com.pitercoding.springboot2_devdojo.mapper.AnimeMapper;
-import com.pitercoding.springboot2_devdojo.requests.AnimePostRequestBody;
-import com.pitercoding.springboot2_devdojo.repository.AnimeRepository;
-import com.pitercoding.springboot2_devdojo.requests.AnimePutRequestBody;
+import com.pitercoding.projeto_springinitializr.domain.Anime;
+import com.pitercoding.projeto_springinitializr.exception.BadRequestException;
+import com.pitercoding.projeto_springinitializr.mapper.AnimeMapper;
+import com.pitercoding.projeto_springinitializr.requests.AnimePostRequestBody;
+import com.pitercoding.projeto_springinitializr.repository.AnimeRepository;
+import com.pitercoding.projeto_springinitializr.requests.AnimePutRequestBody;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -32,6 +31,7 @@ public class AnimeService {
                 .orElseThrow(() -> new BadRequestException("Anime not found!"));
     }
 
+    @Transactional
     public Anime save(AnimePostRequestBody animePostRequestBody) {
         return animeRepository.save(AnimeMapper.INSTANCE.toAnime(animePostRequestBody));
     }

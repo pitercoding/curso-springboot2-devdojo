@@ -1,10 +1,11 @@
-package com.pitercoding.springboot2_devdojo.controller;
+package com.pitercoding.projeto_springinitializr.controller;
 
-import com.pitercoding.springboot2_devdojo.domain.Anime;
-import com.pitercoding.springboot2_devdojo.requests.AnimePostRequestBody;
-import com.pitercoding.springboot2_devdojo.requests.AnimePutRequestBody;
-import com.pitercoding.springboot2_devdojo.service.AnimeService;
-import com.pitercoding.springboot2_devdojo.util.DateUtil;
+import com.pitercoding.projeto_springinitializr.domain.Anime;
+import com.pitercoding.projeto_springinitializr.requests.AnimePostRequestBody;
+import com.pitercoding.projeto_springinitializr.requests.AnimePutRequestBody;
+import com.pitercoding.projeto_springinitializr.service.AnimeService;
+import com.pitercoding.projeto_springinitializr.util.DateUtil;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
@@ -40,7 +41,7 @@ public class AnimeController {
     }
 
     @PostMapping
-    public ResponseEntity<Anime> save(@RequestBody AnimePostRequestBody animePostRequestBody) {
+    public ResponseEntity<Anime> save(@RequestBody @Valid AnimePostRequestBody animePostRequestBody) {
         return new ResponseEntity<>(animeService.save(animePostRequestBody), HttpStatus.CREATED) ;
     }
 

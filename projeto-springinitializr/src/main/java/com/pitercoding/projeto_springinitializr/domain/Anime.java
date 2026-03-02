@@ -1,4 +1,4 @@
-package com.pitercoding.springboot2_devdojo.domain;
+package com.pitercoding.projeto_springinitializr.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

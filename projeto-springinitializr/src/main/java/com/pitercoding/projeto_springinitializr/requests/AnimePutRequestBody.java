@@ -1,4 +1,4 @@
-package com.pitercoding.springboot2_devdojo.requests;
+package com.pitercoding.projeto_springinitializr.requests;
 
 import lombok.Data;
 

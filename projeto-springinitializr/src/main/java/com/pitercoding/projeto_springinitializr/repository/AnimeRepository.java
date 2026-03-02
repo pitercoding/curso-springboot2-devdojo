@@ -1,6 +1,6 @@
-package com.pitercoding.springboot2_devdojo.repository;
+package com.pitercoding.projeto_springinitializr.repository;
 
-import com.pitercoding.springboot2_devdojo.domain.Anime;
+import com.pitercoding.projeto_springinitializr.domain.Anime;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

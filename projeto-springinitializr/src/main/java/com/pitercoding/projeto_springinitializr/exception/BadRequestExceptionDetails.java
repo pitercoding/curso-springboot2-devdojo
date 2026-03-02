@@ -1,4 +1,4 @@
-package com.pitercoding.springboot2_devdojo.exception;
+package com.pitercoding.projeto_springinitializr.exception;
 
 import lombok.Builder;
 import lombok.Data;
