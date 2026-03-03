@@ -1,11 +1,11 @@
 package com.pitercoding.projeto_springinitializr.requests;
 
-import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
 public class AnimePostRequestBody {
 
-    @NotEmpty(message = "Anime name cannot be empty")
+    @NotBlank(message = "Anime name cannot be blank")
     private String name;
 }

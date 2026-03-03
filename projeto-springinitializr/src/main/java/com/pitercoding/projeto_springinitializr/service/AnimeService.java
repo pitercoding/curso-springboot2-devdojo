@@ -16,6 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AnimeService {
     private final AnimeRepository animeRepository;
+    private final AnimeMapper animeMapper;
 
     public List<Anime> listAll() {
         return animeRepository.findAll();
@@ -33,17 +34,17 @@ public class AnimeService {
 
     @Transactional
     public Anime save(AnimePostRequestBody animePostRequestBody) {
-        return animeRepository.save(AnimeMapper.INSTANCE.toAnime(animePostRequestBody));
+        return animeRepository.save(animeMapper.toAnime(animePostRequestBody));
     }
 
     public void delete(Long id) {
         animeRepository.delete(findByIdOrThrowBadRequestException(id));
     }
 
+    @Transactional
     public void replace(AnimePutRequestBody animePutRequestBody) {
         Anime savedAnime = findByIdOrThrowBadRequestException(animePutRequestBody.getId());
-        Anime anime = AnimeMapper.INSTANCE.toAnime(animePutRequestBody);
-        anime.setId(savedAnime.getId());
-        animeRepository.save(anime);
+        savedAnime.setName(animePutRequestBody.getName());
+        animeRepository.save(savedAnime);
     }
 }
