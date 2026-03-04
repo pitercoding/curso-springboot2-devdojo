@@ -8,6 +8,8 @@ import com.pitercoding.projeto_springinitializr.repository.AnimeRepository;
 import com.pitercoding.projeto_springinitializr.requests.AnimePutRequestBody;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,8 +20,8 @@ public class AnimeService {
     private final AnimeRepository animeRepository;
     private final AnimeMapper animeMapper;
 
-    public List<Anime> listAll() {
-        return animeRepository.findAll();
+    public Page<Anime> listAll(Pageable pageable) {
+        return animeRepository.findAll(pageable);
     }
 
     public List<Anime> findByName(String name) {
