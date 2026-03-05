@@ -24,10 +24,13 @@ public class AnimeService {
         return animeRepository.findAll(pageable);
     }
 
+    public List<Anime> listAllNonPageable() {
+        return animeRepository.findAll();
+    }
+
     public List<Anime> findByName(String name) {
         return animeRepository.findByName(name);
     }
-
 
     public Anime findByIdOrThrowBadRequestException(Long id) {
         return animeRepository.findById(id)
