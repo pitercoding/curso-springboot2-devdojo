@@ -1,6 +1,7 @@
 package com.pitercoding.projeto_springinitializr.repository;
 
 import com.pitercoding.projeto_springinitializr.domain.Anime;
+import jakarta.validation.ConstraintViolationException;
 import lombok.extern.log4j.Log4j2;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -58,8 +59,7 @@ class AnimeRepositoryTest {
         Anime animeSaved = this.animeRepository.save(animeToBeSaved);
         String name = animeSaved.getName();
         List<Anime> animes = this.animeRepository.findByName(name);
-        Assertions.assertThat(animes).isNotEmpty();
-        Assertions.assertThat(animes).contains(animeSaved);
+        Assertions.assertThat(animes).isNotEmpty().contains(animeSaved);
     }
 
     @Test
@@ -67,6 +67,18 @@ class AnimeRepositoryTest {
     void findByName_ReturnsEmptyList_WhenAnimeIsNotFound(){
         List<Anime> animes = this.animeRepository.findByName("xaxa");
         Assertions.assertThat(animes).isEmpty();
+    }
+
+    @Test
+    @DisplayName("Save throws ConstraintValidationException when name is empty")
+    void save_ConstraintValidationException_WhenNameIsBlank(){
+        Anime anime = new Anime();
+        // Assertions.assertThatThrownBy(() -> this.animeRepository.save(anime))
+                // .isInstanceOf(ConstraintViolationException.class);
+
+        Assertions.assertThatExceptionOfType(ConstraintViolationException.class)
+                .isThrownBy(() -> animeRepository.save(anime))
+                .withMessageContaining("Anime name cannot be blank");
     }
 
     private Anime createAnime() {
