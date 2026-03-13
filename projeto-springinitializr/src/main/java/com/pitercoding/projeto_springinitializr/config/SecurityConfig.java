@@ -29,6 +29,8 @@ public class SecurityConfig {
                 .authenticationProvider(authenticationProvider)
                 .csrf(AbstractHttpConfigurer::disable)   // CSRF desabilitado
                 .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/animes/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/animes/**").hasRole("USER")
                         .anyRequest().authenticated()
                 )
                 .httpBasic(Customizer.withDefaults())
