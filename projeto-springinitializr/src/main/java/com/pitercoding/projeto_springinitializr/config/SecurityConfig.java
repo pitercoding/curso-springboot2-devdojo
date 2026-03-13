@@ -7,12 +7,14 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.config.Customizer;
 
 @Configuration
@@ -20,10 +22,11 @@ import org.springframework.security.config.Customizer;
 @EnableMethodSecurity
 @Log4j2
 public class SecurityConfig {
-
+    
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http, DaoAuthenticationProvider authenticationProvider) throws Exception {
         return http
+                .authenticationProvider(authenticationProvider)
                 .csrf(AbstractHttpConfigurer::disable)   // CSRF desabilitado
                 .authorizeHttpRequests(auth -> auth
                         .anyRequest().authenticated()
@@ -34,21 +37,36 @@ public class SecurityConfig {
     }
 
     @Bean
-    public UserDetailsService userDetailsService(PasswordEncoder passwordEncoder) {
+    public DaoAuthenticationProvider authenticationProvider(UserDetailsService userDetailsService,
+                                                           PasswordEncoder passwordEncoder) {
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+        provider.setUserDetailsService(userDetailsService);
+        provider.setPasswordEncoder(passwordEncoder);
+        return provider;
+    }
 
-        log.info("Password encoded {}", passwordEncoder.encode("test"));
-
-        var user1 = User.withUsername("tripaseca")
+    @Bean
+    public UserDetailsService userDetailsService(PasswordEncoder passwordEncoder,
+                                                 com.pitercoding.projeto_springinitializr.service.DevDojoUserDetailsService devDojoUserDetailsService) {
+        var user1 = User.withUsername("poucastrancas")
                 .password(passwordEncoder.encode("chapolin"))
                 .roles("USER", "ADMIN")
                 .build();
 
-        var user2 = User.withUsername("quasenada")
+        var user2 = User.withUsername("rachacuca")
                 .password(passwordEncoder.encode("chapolin"))
                 .roles("USER")
                 .build();
 
-        return new InMemoryUserDetailsManager(user1, user2);
+        InMemoryUserDetailsManager inMemory = new InMemoryUserDetailsManager(user1, user2);
+
+        return username -> {
+            try {
+                return inMemory.loadUserByUsername(username);
+            } catch (UsernameNotFoundException ignored) {
+                return devDojoUserDetailsService.loadUserByUsername(username);
+            }
+        };
     }
 
     @Bean
