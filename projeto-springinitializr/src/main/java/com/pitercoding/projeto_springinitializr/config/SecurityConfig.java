@@ -57,7 +57,7 @@ public class SecurityConfig {
 
         var user2 = User.withUsername("rachacuca")
                 .password(passwordEncoder.encode("chapolin"))
-                .roles("USER")
+                .roles("USER", "ADMIN")
                 .build();
 
         InMemoryUserDetailsManager inMemory = new InMemoryUserDetailsManager(user1, user2);
