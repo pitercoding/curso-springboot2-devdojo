@@ -16,3 +16,6 @@ logging:
     org:
       hibernate:
         SQL: DEBUG
+
+springdoc:
+  packages-to-scan: com.pitercoding.projeto_springinitializr.controller
