@@ -19,3 +19,18 @@ logging:
 
 springdoc:
   packages-to-scan: com.pitercoding.projeto_springinitializr.controller
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info, health, metrics
+  info:
+    env:
+      enabled: true
+
+info:
+  app:
+    name: Spring Boot 2 Essentials Dev Dojo
+    website: https://github.com/pitercoding
+    github: https://github.com/pitercoding/curso-springboot2-devdojo
